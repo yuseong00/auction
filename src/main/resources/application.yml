@@ -2,6 +2,9 @@
 spring:
   profiles:
     active: local
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
 ---
 spring:
   datasource:
@@ -13,18 +16,21 @@ spring:
     hibernate:
       ddl-auto: create
     properties:
-      show_sql: true
-      format_sql : true
+#      show_sql: true
+#      format_sql : true
+       hibernate:
+         format_sql: true
   config:
     activate:
       on-profile:
 ---
-server:
-  port: 8000
-logging:
-  level:
-    org.hibernate.SQL: debug
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
   config:
     activate:
-      on-profile:
+      on-profile: dev
